@@ -1,10 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
-from manager.views import IndexView
+from manager.views import index
 
 urlpatterns = [
-    path("", IndexView.as_view, name="index"),
+    path("", index, name="index"),
 ]
 
 app_name = "manager"

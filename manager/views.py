@@ -22,3 +22,27 @@ def index(request):
     }
 
     return render(request, "manager/index.html", context=context)
+
+
+class PositionListView(generic.ListView):
+    model = Position
+    template_name = "manager/position_list.html"
+    paginate_by = 10
+
+
+class TaskListView(generic.ListView):
+    model = Task
+    template_name = "manager/task_list.html"
+    paginate_by = 5
+
+
+class TaskTypeView(generic.ListView):
+    model = TaskType
+    template_name = "manager/task_type_list.html"
+    paginate_by = 10
+
+
+class WorkerView(generic.ListView):
+    model = Worker
+    template_name = "manager/worker_list.html"
+

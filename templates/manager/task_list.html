@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mt-4">Task List</h1>
+  <ul class="list-group mt-3">
+    {% if task_list %}
+      {% for task in task_list %}
+        <li class="list-group-item">
+          <h5>{{ task.name }}</h5>
+          <p>Description: {{ task.description }}</p>
+          <p>Deadline: {{ task.deadline }}</p>
+          <p>Is completed: {{ task.is_completed|yesno:"<span class='text-success'>✅</span>, <span class='text-danger'>❌</span>"|safe }}</p>
+        </li>
+      {% endfor %}
+    {% else %}
+      <li class="list-group-item">
+        Sorry, there are no tasks now. Please visit us later!
+      </li>
+    {% endif %}
+  </ul>
+</div>
+{% endblock %}

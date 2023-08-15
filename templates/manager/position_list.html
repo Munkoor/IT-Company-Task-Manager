@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <h1>Position list</h1>
+  <ul>
+    {% if position_list %}
+
+    {% for position in position_list %}
+      <li>
+        <h6>{{ position.name }}</h6>
+      </li>
+
+    {% endfor %}
+    {% else %}
+      Sorry, there are no positions now, visit us later!
+    {% endif %}
+
+
+  </ul>
+
+{% endblock %}

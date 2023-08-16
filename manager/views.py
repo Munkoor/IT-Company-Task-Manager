@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from manager.forms import WorkerCreationForm
 from manager.models import Position, Task, TaskType, Worker
 
 
@@ -96,3 +97,9 @@ class WorkerView(generic.ListView):
 
 class WorkerDetailView(generic.DetailView):
     model = Worker
+
+
+class WorkerCreateView(generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    template_name = "manager/worker_form.html"

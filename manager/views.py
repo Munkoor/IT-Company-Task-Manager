@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from manager.models import Position, Task, TaskType, Worker
@@ -30,6 +31,20 @@ class PositionListView(generic.ListView):
     paginate_by = 10
 
 
+class PositionCreateView(generic.CreateView):
+    model = Position
+    fields = "__all__"
+    template_name = "manager/position_form.html"
+    success_url = reverse_lazy("manager:position-list")
+
+
+class PositionUpdateView(generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    template_name = "manager/position_form.html"
+    success_url = reverse_lazy("manager:position-list")
+
+
 class TaskListView(generic.ListView):
     model = Task
     template_name = "manager/task_list.html"
@@ -40,13 +55,44 @@ class TaskDetailView(generic.DetailView):
     model = Task
 
 
+class TaskCreateView(generic.CreateView):
+    model = Task
+    fields = "__all__"
+    template_name = "manager/task_form.html"
+    success_url = reverse_lazy("manager:task-list")
+
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    fields = "__all__"
+    template_name = "manager/task_form.html"
+    success_url = reverse_lazy("manager:task-list")
+
+
 class TaskTypeView(generic.ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
     paginate_by = 10
 
 
+class TaskTypeCreateView(generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    template_name = "manager/task_type_form.html"
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskTypeUpdateView(generic.UpdateView):
+    model = TaskType
+    fields = "__all__"
+    template_name = "manager/task_type_form.html"
+    success_url = reverse_lazy("manager:task-type-list")
+
+
 class WorkerView(generic.ListView):
     model = Worker
     template_name = "manager/worker_list.html"
 
+
+class WorkerDetailView(generic.DetailView):
+    model = Worker

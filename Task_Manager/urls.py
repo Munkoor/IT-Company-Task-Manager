@@ -24,5 +24,6 @@ from Task_Manager import settings
 urlpatterns = [
     path("", lambda request: redirect("manager:index"), name="home"),
     path("admin/", admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("manager/", include("manager.urls", namespace="manager"))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

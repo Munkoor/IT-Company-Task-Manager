@@ -7,7 +7,7 @@
     {% if task_list %}
       {% for task in task_list %}
         <li class="list-group-item">
-          <h5>{{ task.name }}</h5>
+          <h5><a style="color: black" href="{% url 'manager:task-detail' pk=task.id%}">{{ task.name }}</a></h5>
           <p>Description: {{ task.description }}</p>
           <p>Deadline: {{ task.deadline }}</p>
           <p>Is completed: {{ task.is_completed|yesno:"<span class='text-success'>✅</span>, <span class='text-danger'>❌</span>"|safe }}</p>

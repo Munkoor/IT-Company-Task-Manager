@@ -24,6 +24,7 @@ class TaskAdmin(admin.ModelAdmin):
 @admin.register(Worker)
 class WorkerAdmin(UserAdmin):
     search_fields = ["username", "first_name", "last_name"]
+    list_display = UserAdmin.list_display + ("position",)
 
 
 

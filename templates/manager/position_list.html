@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
  <h1>Position list</h1>
@@ -17,5 +18,16 @@
 
 
   </ul>
-
+{#  <button id="deleteButton">Видалити</button>#}
+{##}
+{#<!-- Модальне вікно -->#}
+{#<div id="confirmationModal" style="display: none;">#}
+{#    <p>Справді ви хочете видалити цей елемент?</p>#}
+{#    <button id="confirmDeleteButton">Так</button>#}
+{#    <button id="cancelDeleteButton">Скасувати</button>#}
+{#</div>#}
+{##}
+{#<!-- Підключення JavaScript-скрипта -->#}
+{#<script src="{% static 'js/script.js' %}"></script>#}
+{##}
 {% endblock %}

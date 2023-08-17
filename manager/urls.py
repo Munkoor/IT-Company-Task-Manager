@@ -1,8 +1,20 @@
 from django.urls import path
 
-from manager.views import index, PositionListView, TaskListView, TaskTypeView, \
-    WorkerView, TaskDetailView, WorkerDetailView, PositionCreateView, \
-    PositionUpdateView, TaskCreateView, TaskUpdateView, WorkerCreateView
+from manager.views import (
+    index,
+    PositionListView,
+    TaskListView,
+    TaskTypeView,
+    WorkerView,
+    TaskDetailView,
+    WorkerDetailView,
+    PositionCreateView,
+    PositionUpdateView,
+    TaskCreateView,
+    TaskUpdateView,
+    WorkerCreateView,
+    PositionDeleteView
+)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -11,6 +23,8 @@ urlpatterns = [
          name="position-create"),
     path("positions/<int:pk>/update/", PositionUpdateView.as_view(),
          name="position-update"),
+    path("positions/<int:pk>/delete/", PositionDeleteView.as_view(),
+         name="position-delete"),
 
     path("tasks/", TaskListView.as_view(), name="task-list"),
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
@@ -22,6 +36,7 @@ urlpatterns = [
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
     path("workers/<int:pk>/", WorkerDetailView.as_view(),
          name="worker-detail"),
+
 ]
 
 app_name = "manager"

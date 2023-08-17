@@ -46,6 +46,12 @@ class PositionUpdateView(generic.UpdateView):
     success_url = reverse_lazy("manager:position-list")
 
 
+class PositionDeleteView(generic.DeleteView):
+    model = Position
+    template_name = "manager/position_confirm_delete.html"
+    success_url = reverse_lazy("manager:position-list")
+
+
 class TaskListView(generic.ListView):
     model = Task
     template_name = "manager/task_list.html"
@@ -70,6 +76,10 @@ class TaskUpdateView(generic.UpdateView):
     success_url = reverse_lazy("manager:task-list")
 
 
+class TaskDeleteView(generic.DeleteView):
+    pass
+
+
 class TaskTypeView(generic.ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
@@ -90,6 +100,10 @@ class TaskTypeUpdateView(generic.UpdateView):
     success_url = reverse_lazy("manager:task-type-list")
 
 
+class TaskTypeDeleteView(generic.DeleteView):
+    pass
+
+
 class WorkerView(generic.ListView):
     model = Worker
     template_name = "manager/worker_list.html"
@@ -103,3 +117,8 @@ class WorkerCreateView(generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     template_name = "manager/worker_form.html"
+
+
+class WorkerDeleteView(generic.DeleteView):
+    pass
+

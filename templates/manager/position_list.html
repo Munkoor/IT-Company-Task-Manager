@@ -2,32 +2,31 @@
 {% load static %}
 
 {% block content %}
- <h1>Position list</h1>
+  <h1>Position list</h1>
   <ul>
     {% if position_list %}
-
-    {% for position in position_list %}
-      <li>
-        <h6>{{ position.name }}</h6>
-      </li>
-
-    {% endfor %}
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        {% for position in position_list %}
+          <tr>
+            <td>{{ position.id }}</td>
+            <td>{{ position.name }}</td>
+            <td>
+              <strong><a style="color: black" href="{% url 'manager:position-update'  pk=position.id%}">Update</a></strong>
+            </td>
+            <td>
+              <strong><a style="color: black" href="{% url 'manager:position-delete'  pk=position.id%}">Delete</a></strong>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
     {% else %}
-      Sorry, there are no positions now, visit us later!
+      <p>Sorry, there are no positions now, visit us later!</p>
     {% endif %}
-
-
   </ul>
-{#  <button id="deleteButton">Видалити</button>#}
-{##}
-{#<!-- Модальне вікно -->#}
-{#<div id="confirmationModal" style="display: none;">#}
-{#    <p>Справді ви хочете видалити цей елемент?</p>#}
-{#    <button id="confirmDeleteButton">Так</button>#}
-{#    <button id="cancelDeleteButton">Скасувати</button>#}
-{#</div>#}
-{##}
-{#<!-- Підключення JavaScript-скрипта -->#}
-{#<script src="{% static 'js/script.js' %}"></script>#}
-{##}
 {% endblock %}

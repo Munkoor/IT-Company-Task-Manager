@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -78,6 +78,19 @@ class TaskDeleteView(generic.DeleteView):
     model = Task
     template_name = "manager/task_confirm_delete.html"
     success_url = reverse_lazy("manager:task-list")
+
+
+class TaskUpdateWorkerView(generic.UpdateView):
+    def post(self, request, *args, **kwargs):
+        worker = request.user
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+
+        if worker in task.assignees.all():
+            task.assignees.remove(worker)
+        else:
+            task.assignees.add(worker)
+
+        return redirect("manager:task-detail", pk=kwargs["pk"])
 
 
 class TaskTypeListView(generic.ListView):

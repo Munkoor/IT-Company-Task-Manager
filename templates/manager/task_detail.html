@@ -1,34 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card border-primary mb-3">
-        <div class="card-header">Task Details</div>
-        <div class="card-body text-dark">
-          <h4 class="card-title">{{ task.name }}</h4>
-          <p class="card-text">
-            <strong>Description:</strong> {{ task.description }}<br>
-            <strong>Deadline:</strong> {{ task.deadline }}<br>
-            <strong>Is Completed:</strong> {{ task.is_completed }}<br>
-            <strong>Priority:</strong> {{ task.priority }}<br>
-            <strong>Task Type:</strong> {{ task.task_type.name }}<br><br>
-          </p>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card border-primary mb-3">
+          <div class="card-header">Task Details</div>
+          <div class="card-body text-dark">
+            <h4 class="card-title">{{ task.name }}</h4>
+            <p class="card-text">
+              <strong>Description:</strong> {{ task.description }}<br>
+              <strong>Deadline:</strong> {{ task.deadline }}<br>
+              <strong>Is Completed:</strong> {{ task.is_completed }}<br>
+              <strong>Priority:</strong> {{ task.priority }}<br>
+              <strong>Task Type:</strong> {{ task.task_type.name }}<br><br>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-4">
-    <div class="col-md-8">
-      <h2>Assigned Workers</h2>
-      <ul class="list-group">
-        {% for worker in task.assignees.all %}
-          <li class="list-group-item">{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
-        {% endfor %}
-      </ul>
+    <div class="row mt-4">
+      <div class="col-md-8">
+        <h2>Assigned Workers</h2>
+        <br>
+        <form action="{% url 'manager:task-update-worker' pk=task.id %}"
+              method="post">
+          {% csrf_token %}
+          {% if user in task.assignees.all %}
+            <input type="submit" class="btn btn-danger link-to-page"
+                   value="Delete me from this task">
+          {% else %}
+            <input type="submit" class="btn btn-success link-to-page"
+                   value="Assign me to this task">
+          {% endif %}
+        </form>
+        <br>
+        <ul class="list-group">
+          {% for worker in task.assignees.all %}
+            <li class="list-group-item">{{ worker.username }}
+              ({{ worker.first_name }} {{ worker.last_name }})
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}

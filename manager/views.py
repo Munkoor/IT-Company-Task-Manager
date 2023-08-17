@@ -82,7 +82,7 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("manager:task-list")
 
 
-class TaskTypeView(generic.ListView):
+class TaskTypeListView(generic.ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
     paginate_by = 10
@@ -103,7 +103,9 @@ class TaskTypeUpdateView(generic.UpdateView):
 
 
 class TaskTypeDeleteView(generic.DeleteView):
-    pass
+    model = TaskType
+    template_name = "manager/task_type_confirm_delete.html"
+    success_url = reverse_lazy("manager:task-type-list")
 
 
 class WorkerView(generic.ListView):

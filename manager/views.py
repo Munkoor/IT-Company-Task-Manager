@@ -132,6 +132,7 @@ class WorkerCreateView(generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     template_name = "manager/worker_form.html"
+    success_url = reverse_lazy("manager:worker-list")
 
 
 class WorkerUpdateView(generic.UpdateView):

@@ -17,10 +17,10 @@
             <td>{{ type.id }}</td>
             <td>{{ type.name }}</td>
             <td>
-              <strong><a style="color: black" href="{% url 'manager:position-update'  pk=type.id%}">Update</a></strong>
+              <strong><a style="color: black" href="{% url 'manager:task-type-update'  pk=type.id%}">Update</a></strong>
             </td>
             <td>
-              <strong><a style="color: black" href="{% url 'manager:position-delete'  pk=type.id%}">Delete</a></strong>
+              <strong><a style="color: black" href="{% url 'manager:task-type-delete'  pk=type.id%}">Delete</a></strong>
             </td>
           </tr>
         {% endfor %}

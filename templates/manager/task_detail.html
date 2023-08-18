@@ -16,6 +16,12 @@
               <strong>Task Type:</strong> {{ task.task_type.name }}<br><br>
             </p>
           </div>
+          <div class="card-footer d-flex justify-content-end">
+            <a href="{% url 'manager:task-update' pk=task.id %}"
+               class="btn btn-primary mr-2">Update</a>
+            <a href="{% url 'manager:task-delete' pk=task.id %}"
+               class="btn btn-danger">Delete</a>
+          </div>
         </div>
       </div>
     </div>

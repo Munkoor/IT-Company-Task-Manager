@@ -119,7 +119,7 @@ class TaskTypeDeleteView(generic.DeleteView):
     success_url = reverse_lazy("manager:task-type-list")
 
 
-class WorkerView(generic.ListView):
+class WorkerListView(generic.ListView):
     model = Worker
     template_name = "manager/worker_list.html"
 
@@ -134,6 +134,13 @@ class WorkerCreateView(generic.CreateView):
     template_name = "manager/worker_form.html"
 
 
-class WorkerDeleteView(generic.DeleteView):
-    pass
+class WorkerUpdateView(generic.UpdateView):
+    model = Worker
+    fields = ["username", "first_name", "last_name"]
+    template_name = "manager/worker_form.html"
+    success_url = reverse_lazy("manager:worker-detail")
 
+
+class WorkerDeleteView(generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("manager:index")

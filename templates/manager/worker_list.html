@@ -35,4 +35,7 @@
             <p>There are no workers in the service.</p>
         {% endif %}
     </div>
+    <div class="text-center mt-3">
+    <a href="{% url 'manager:worker-create' %}" class="btn btn-primary btn-lg">Create Worker</a>
+  </div>
 {% endblock %}

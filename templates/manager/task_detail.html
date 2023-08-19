@@ -1,13 +1,15 @@
-{% extends "base.html" %}
+{% extends "base-presentation.html" %}
 
 {% block content %}
   <div class="container mt-4">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 mx-auto"> <!-- Center align the card -->
         <div class="card border-primary mb-3">
-          <div class="card-header">Task Details</div>
+          <div class="card-header text-center">Task Details</div>
+          <!-- Center align the title -->
           <div class="card-body text-dark">
-            <h4 class="card-title">{{ task.name }}</h4>
+            <h4 class="card-title text-center">{{ task.name }}</h4>
+            <!-- Center align the title -->
             <p class="card-text">
               <strong>Description:</strong> {{ task.description }}<br>
               <strong>Deadline:</strong> {{ task.deadline }}<br>
@@ -18,7 +20,8 @@
           </div>
           <div class="card-footer d-flex justify-content-end">
             <a href="{% url 'manager:task-update' pk=task.id %}"
-               class="btn btn-primary mr-2">Update</a>
+               class="btn btn-primary mr-4">Update</a>
+            <div style="width: 10px;"></div>
             <a href="{% url 'manager:task-delete' pk=task.id %}"
                class="btn btn-danger">Delete</a>
           </div>
@@ -27,28 +30,34 @@
     </div>
 
     <div class="row mt-4">
-      <div class="col-md-8">
-        <h2>Assigned Workers</h2>
+      <div class="col-md-8 mx-auto"> <!-- Center align the content -->
+        <h2 class="text-center">Assigned Workers</h2>
+        <!-- Center align the title -->
         <br>
         <form action="{% url 'manager:task-update-worker' pk=task.id %}"
               method="post">
           {% csrf_token %}
           {% if user in task.assignees.all %}
-            <input type="submit" class="btn btn-danger link-to-page"
+            <input type="submit" class="btn btn-danger link-to-page mt-2"
                    value="Delete me from this task">
           {% else %}
-            <input type="submit" class="btn btn-success link-to-page"
+            <input type="submit" class="btn btn-success link-to-page mt-2"
                    value="Assign me to this task">
           {% endif %}
         </form>
         <br>
         <ul class="list-group">
           {% for worker in task.assignees.all %}
-            <li class="list-group-item">{{ worker.username }}
-              ({{ worker.first_name }} {{ worker.last_name }})
+            <li class="list-group-item">
+              <a href="{% url 'manager:worker-detail' pk=worker.id %}"
+                 style="text-decoration: underline; color: black">
+                {{ worker.username }}
+                ({{ worker.first_name }} {{ worker.last_name }})
+              </a>
             </li>
           {% endfor %}
         </ul>
+
       </div>
     </div>
   </div>

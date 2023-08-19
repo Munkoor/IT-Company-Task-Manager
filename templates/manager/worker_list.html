@@ -1,31 +1,38 @@
-{% extends "base.html" %}
+{% extends "base-presentation.html" %}
 
 {% block content %}
-    <h1>
-      worker List
-    </h1>
-
-    {% if worker_list %}
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Position</th>
-      </tr>
-    {% for worker in worker_list %}
-      <tr>
-        <td>{{ worker.id }}</td>
-        <td><a href="{% url 'manager:worker-detail' pk=worker.id%}">{{ worker.username }} {% if user == worker %} (Me){% endif %}</a></td>
-        <td>{{ worker.first_name }}</td>
-        <td>{{ worker.last_name }}</td>
-        <td>{{ worker.position.name }}</td>
-      </tr>
-    {% endfor %}
-
-    </table>
-    {% else %}
-      <p>There are no workers in the service.</p>
-    {% endif %}
+    <div class="mt-7 text-center">
+        <h1>Worker List</h1>
+      <br>
+    </div>
+    <div class="d-flex justify-content-center">
+        {% if worker_list %}
+            <div class="mx-auto px-4"> <!-- Додайте відступи зліва і справа тут -->
+                <table class="table table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for worker in worker_list %}
+                            <tr>
+                                <td>{{ worker.id }}</td>
+                                <td><a style="color: black; text-decoration: underline;" href="{% url 'manager:worker-detail' pk=worker.id %}">{{ worker.username }} {% if user == worker %} (Me){% endif %}</a></td>
+                                <td>{{ worker.first_name }}</td>
+                                <td>{{ worker.last_name }}</td>
+                                <td>{{ worker.position.name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>There are no workers in the service.</p>
+        {% endif %}
+    </div>
 {% endblock %}

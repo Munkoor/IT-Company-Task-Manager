@@ -29,7 +29,7 @@ def index(request):
 class PositionListView(generic.ListView):
     model = Position
     template_name = "manager/position_list.html"
-    paginate_by = 10
+    paginate_by = 5
 
 
 class PositionCreateView(generic.CreateView):
@@ -55,7 +55,7 @@ class PositionDeleteView(generic.DeleteView):
 class TaskListView(generic.ListView):
     model = Task
     template_name = "manager/task_list.html"
-    paginate_by = 5
+    paginate_by = 3
 
 
 class TaskDetailView(generic.DetailView):
@@ -96,7 +96,7 @@ class TaskUpdateWorkerView(generic.UpdateView):
 class TaskTypeListView(generic.ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
-    paginate_by = 10
+    paginate_by = 5
 
 
 class TaskTypeCreateView(generic.CreateView):
@@ -122,6 +122,7 @@ class TaskTypeDeleteView(generic.DeleteView):
 class WorkerListView(generic.ListView):
     model = Worker
     template_name = "manager/worker_list.html"
+    paginate_by = 5
 
 
 class WorkerDetailView(generic.DetailView):
@@ -137,9 +138,9 @@ class WorkerCreateView(generic.CreateView):
 
 class WorkerUpdateView(generic.UpdateView):
     model = Worker
-    fields = ["username", "first_name", "last_name"]
+    fields = ["username", "first_name", "last_name", "position"]
     template_name = "manager/worker_form.html"
-    success_url = reverse_lazy("manager:worker-detail")
+    success_url = reverse_lazy("manager:worker-list")
 
 
 class WorkerDeleteView(generic.DeleteView):

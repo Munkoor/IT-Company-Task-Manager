@@ -7,23 +7,22 @@ from manager.forms import WorkerCreationForm, TaskForm
 from manager.models import Position, Task, TaskType, Worker
 
 
-@login_required
-def index(request):
-    """View function for the home page of the site."""
+class IndexView(generic.ListView):
+    template_name = 'manager/index.html'
+    context_object_name = 'context'
 
-    num_of_positions = Position.objects.count()
-    num_of_tasks = Task.objects.count()
-    num_of_task_types = TaskType.objects.count()
-    num_of_workers = Worker.objects.count()
+    def get_queryset(self):
+        num_of_positions = Position.objects.count()
+        num_of_tasks = Task.objects.count()
+        num_of_task_types = TaskType.objects.count()
+        num_of_workers = Worker.objects.count()
 
-    context = {
-        "num_of_positions": num_of_positions,
-        "num_of_tasks": num_of_tasks,
-        "num_of_task_types": num_of_task_types,
-        "num_of_workers": num_of_workers,
-    }
-
-    return render(request, "manager/index.html", context=context)
+        return {
+            "num_of_positions": num_of_positions,
+            "num_of_tasks": num_of_tasks,
+            "num_of_task_types": num_of_task_types,
+            "num_of_workers": num_of_workers,
+        }
 
 
 class PositionListView(generic.ListView):

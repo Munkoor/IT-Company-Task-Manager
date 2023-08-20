@@ -1,7 +1,7 @@
 from django.urls import path
 
 from manager.views import (
-    index,
+    IndexView,
     PositionListView,
     PositionCreateView,
     PositionUpdateView,
@@ -24,7 +24,7 @@ from manager.views import (
 )
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("", IndexView.as_view(), name="index"),
     path("positions/", PositionListView.as_view(), name="position-list"),
     path("positions/create/", PositionCreateView.as_view(),
          name="position-create"),

@@ -41,22 +41,22 @@ urlpatterns = [
     path("tasks/<int:pk>/delete/", TaskDeleteView.as_view(),
          name="task-delete"),
     path("tasktypes/", TaskTypeListView.as_view(), name="task-type-list"),
-    path("tasktypes/create", TaskTypeCreateView.as_view(),
+    path("tasktypes/create/", TaskTypeCreateView.as_view(),
          name="task-type-create"),
-    path("tasktypes/<int:pk>/update", TaskTypeUpdateView.as_view(),
+    path("tasktypes/<int:pk>/update/", TaskTypeUpdateView.as_view(),
          name="task-type-update"),
-    path("tasktypes/<int:pk>/delete", TaskTypeDeleteView.as_view(),
+    path("tasktypes/<int:pk>/delete/", TaskTypeDeleteView.as_view(),
          name="task-type-delete"),
 
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
     path("workers/<int:pk>/", WorkerDetailView.as_view(),
          name="worker-detail"),
-    path("workers/<int:pk>/update", WorkerUpdateView.as_view(),
+    path("workers/<int:pk>/update/", WorkerUpdateView.as_view(),
          name="worker-update"),
-    path("workers/<int:pk>/delete", WorkerDeleteView.as_view(),
+    path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(),
          name="worker-delete"),
-    path("workers<int:pk>/update-worker", TaskUpdateWorkerView.as_view(),
+    path("workers/<int:pk>/update-worker/", TaskUpdateWorkerView.as_view(),
          name="task-update-worker")
 
 ]

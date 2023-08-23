@@ -1,0 +1,24 @@
+{% extends "base-presentation.html" %}
+
+{% block content %}
+
+
+  <style>
+    .container {
+        padding: 80px;
+    }
+  </style>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h3 class="mb-4">Logged Out</h3>
+            <p>You have been successfully logged out.</p>
+            <a href="{% url 'login' %}" class="btn btn-primary mt-3">Click here to log in again</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base-presentation.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-center py-7">
+          <h1 class="display-4">{{ object|yesno:"Update,Create" }} Worker</h1>
+        </div>
+        <div class="card-body">
+          <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <div class="text-center mt-4">
+              <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

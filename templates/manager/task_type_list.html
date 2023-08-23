@@ -1,0 +1,40 @@
+{% extends "base-presentation.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="mt-7 text-center">
+    <h1>Task Type List</h1>
+  </div>
+  <br>
+  <div class="d-flex justify-content-center">
+    <ul>
+      {% if tasktype_list %}
+        <table class="table mx-auto table table-bordered table-striped table-condensed"> <!-- Додано клас mx-auto для відцентрування -->
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+          {% for type in tasktype_list %}
+            <tr>
+              <td>{{ type.id }}</td>
+              <td>{{ type.name }}</td>
+              <td>
+                <strong><a style="color: black" href="{% url 'manager:task-type-update' pk=type.id %}">Update</a></strong>
+              </td>
+              <td>
+                <strong><a style="color: black" href="{% url 'manager:task-type-delete' pk=type.id %}">Delete</a></strong>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>Sorry, there are no positions now, visit us later!</p>
+      {% endif %}
+    </ul>
+  </div>
+    <div class="text-center mt-3">
+    <a href="{% url 'manager:task-type-create' %}" class="btn btn-primary btn-lg">Create Task Type</a>
+  </div>
+{% endblock %}

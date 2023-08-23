@@ -155,19 +155,23 @@
                           </svg>
                         </div>
                       </div>
-                      Landing Pages
+                      Pages
                     </h6>
-                    <a href="/page-about-us.html"
+                    <a href="{% url 'manager:worker-list' %}"
                        class="dropdown-item border-radius-md">
-                      About Us
+                      Workers
                     </a>
-                    <a href="/page-contact-us.html"
+                    <a href="{% url 'manager:position-list' %}"
                        class="dropdown-item border-radius-md">
-                      Contact Us
+                      Positions
                     </a>
-                    <a href="/page-author.html"
+                    <a href="{% url 'manager:task-list' %}"
                        class="dropdown-item border-radius-md">
-                      Author
+                      Tasks
+                    </a>
+                    <a href="{% url 'manager:task-type-list' %}"
+                       class="dropdown-item border-radius-md">
+                      Task types
                     </a>
                     <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center px-0 mt-3">
                       <div class="d-inline-block">

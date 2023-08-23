@@ -34,61 +34,61 @@ class IndexView(generic.ListView):
         return context
 
 
-class PositionListView(LoginRequiredMixin, generic.ListView):
+class PositionListView(generic.ListView):
     model = Position
     template_name = "manager/position_list.html"
     paginate_by = 5
 
 
-class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+class PositionCreateView(generic.CreateView):
     model = Position
     fields = "__all__"
     template_name = "manager/position_form.html"
     success_url = reverse_lazy("manager:position-list")
 
 
-class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+class PositionUpdateView(generic.UpdateView):
     model = Position
     fields = "__all__"
     template_name = "manager/position_form.html"
     success_url = reverse_lazy("manager:position-list")
 
 
-class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+class PositionDeleteView(generic.DeleteView):
     model = Position
     template_name = "manager/position_confirm_delete.html"
     success_url = reverse_lazy("manager:position-list")
 
 
-class TaskListView(LoginRequiredMixin, generic.ListView):
+class TaskListView(generic.ListView):
     model = Task
     template_name = "manager/task_list.html"
     paginate_by = 3
 
 
-class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+class TaskDetailView(generic.DetailView):
     model = Task
 
 
-class TaskCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Task
-    form_class = TaskForm
-    success_url = reverse_lazy("manager:task-list")
-
-
-class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("manager:task-list")
 
 
-class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("manager:task-list")
+
+
+class TaskDeleteView(generic.DeleteView):
     model = Task
     template_name = "manager/task_confirm_delete.html"
     success_url = reverse_lazy("manager:task-list")
 
 
-class TaskUpdateWorkerView(LoginRequiredMixin, generic.UpdateView):
+class TaskUpdateWorkerView(generic.UpdateView):
     def post(self, request, *args, **kwargs):
         worker = request.user
         task = get_object_or_404(Task, pk=kwargs["pk"])
@@ -101,56 +101,56 @@ class TaskUpdateWorkerView(LoginRequiredMixin, generic.UpdateView):
         return redirect("manager:task-detail", pk=kwargs["pk"])
 
 
-class TaskTypeListView(LoginRequiredMixin, generic.ListView):
+class TaskTypeListView(generic.ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
     paginate_by = 5
 
 
-class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+class TaskTypeCreateView(generic.CreateView):
     model = TaskType
     fields = "__all__"
     template_name = "manager/task_type_form.html"
     success_url = reverse_lazy("manager:task-type-list")
 
 
-class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+class TaskTypeUpdateView(generic.UpdateView):
     model = TaskType
     fields = "__all__"
     template_name = "manager/task_type_form.html"
     success_url = reverse_lazy("manager:task-type-list")
 
 
-class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+class TaskTypeDeleteView(generic.DeleteView):
     model = TaskType
     template_name = "manager/task_type_confirm_delete.html"
     success_url = reverse_lazy("manager:task-type-list")
 
 
-class WorkerListView(LoginRequiredMixin, generic.ListView):
+class WorkerListView(generic.ListView):
     model = Worker
     template_name = "manager/worker_list.html"
     paginate_by = 5
 
 
-class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+class WorkerDetailView(generic.DetailView):
     model = Worker
 
 
-class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+class WorkerCreateView(generic.CreateView):
     model = Worker
     form_class = WorkerCreationForm
     template_name = "manager/worker_form.html"
     success_url = reverse_lazy("manager:worker-list")
 
 
-class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+class WorkerUpdateView(generic.UpdateView):
     model = Worker
     fields = ["username", "first_name", "last_name", "position"]
     template_name = "manager/worker_form.html"
     success_url = reverse_lazy("manager:worker-list")
 
 
-class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+class WorkerDeleteView(generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("manager:index")

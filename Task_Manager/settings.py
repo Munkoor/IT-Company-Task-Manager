@@ -27,7 +27,7 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["127.0.0.1", "https://it-task-manager-rrau.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "it-task-manager-rrau.onrender.com"]
 
 
 # Application definition
